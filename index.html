@@ -60,7 +60,11 @@ function checkPrime() {
   let num = document.getElementById("num").value;
   let isPrime = true;
 
-  if (num === 1) {
+  if (num < 1) {
+    document.getElementById("demo").innerHTML = "Negative numbers and zero can never be a prime number.";
+    return;
+  }
+  else if (num === 1) {
     isPrime = false;
   }
   else if (num > 1) {
@@ -79,6 +83,8 @@ function checkPrime() {
   }
 }
 </script>
+
+<!-- That's it! You reached the end '.' psst! Mind checking my GitHub repo and give it a star? -->
 
 </body>
 </html>
