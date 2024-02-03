@@ -13,10 +13,17 @@ body {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
+  text-align: center; /* Center the content */
 }
 
 h2 {
   color: #333;
+}
+
+input[type=number] {
+  padding: 10px;
+  margin-top: 20px;
+  width: 50%; /* Make the input field wider */
 }
 
 button {
@@ -26,6 +33,7 @@ button {
   padding: 10px 20px;
   margin-top: 20px;
   cursor: pointer;
+  width: 50%; /* Make the button wider */
 }
 
 button:hover {
@@ -41,8 +49,8 @@ button:hover {
 </head>
 <body>
 
-<!-- Cool Code over here!
-fr I don't know if someone reads this but if you do consider giving a star to my repo in Github :D -->
+<!-- Cool Code over here! -->
+
 <div class="container">
   <h2>Verify if a number is prime</h2>
 
@@ -68,7 +76,8 @@ function checkPrime() {
     isPrime = false;
   }
   else if (num > 1) {
-    for (let i = 2; i < num; i++) {
+    let sqrtNum = Math.sqrt(num); /* Optimizing the loop */
+    for (let i = 2; i <= sqrtNum; i++) {
       if (num % i == 0) {
         isPrime = false;
         break;
@@ -84,7 +93,8 @@ function checkPrime() {
 }
 </script>
 
-<!-- That's it! You reached the end '.' psst! Mind checking my GitHub repo and give it a star? -->
+<!-- That's it! You reached the end, psst! Mind checking my GitHub repo and give it a star? -->
 
 </body>
 </html>
+
