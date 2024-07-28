@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Number Checker</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background: linear-gradient(135deg, #FFD700, #FF6347, #00BFFF);
-            /* Adjust the colors and direction as desired */
+			/* Adjust the colors and direction as desired */
             /* The above gradient goes from gold (#FFD700) to tomato (#FF6347) to dodger blue (#00BFFF) */
             /* You can add more color stops or change the order of colors */
             /* For a different direction, adjust the angle (e.g., 45deg, 90deg, etc.) */
             /* Lines above are for me to remember if I need to redesign the page 💀 */
         }
-
         .container {
             max-width: 600px;
-            margin: 0 auto;
+            margin: 50px auto;
             padding: 20px;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.9); /* Add a semi-transparent white overlay */
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
         }
 
@@ -54,59 +56,67 @@
             color: #0A192F;
         }
 
-        /* Add more styles for other sections as needed */
-
-        /* Copyright notice */
         .copyright {
             font-size: 12px;
             color: #888;
             margin-top: 30px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Prime Number Checker</h2>
-        <!-- Add other content sections here -->
         <p>Insert a number:</p>
         <input id="num" type="number">
         <button onclick="checkPrime()">Verify</button>
+		<p>©JulyCrab 2024</p>
         <p id="demo"></p>
     </div>
 
+    <dialog id="myFirstDialog" style="width: 25%; background-color: #ffffff; border: 3px solid black;">
+        <p>This website <span style="color: red">doesn't</span> use cookies.</p>
+        <button id="hide">Got it, don't show again</button>
+    </dialog>
+
     <script>
-        function checkPrime() {
-            let num = document.getElementById("num").value;
-            let isPrime = num < 0 ? true : false; // Assume negative numbers are prime
+function checkPrime() {
+    let num = parseInt(document.getElementById("num").value);
+    let isPrime = true;
 
-            if (num == 0 || num == 1) { // 0 and 1 are not prime
+    if (num <= 1) {
+        isPrime = false;
+    } else {
+        for (let i = 2; i <= Math.sqrt(Math.abs(num)); i++) {
+            if (num % i === 0) {
                 isPrime = false;
-            } else {
-                let absNum = Math.abs(num);
-                for (let i = 2; i <= Math.sqrt(absNum); i++) {
-                    if (absNum % i === 0) {
-                        isPrime = false;
-                        break;
-                    }
-                }
-            }
-
-            if (isPrime) {
-                document.getElementById("demo").innerHTML = num + " is a prime number.";
-            } else {
-                document.getElementById("demo").innerHTML = num + " is not a prime number.";
+                break;
             }
         }
+    }
 
-        // Copyright notice
-        const currentYear = new Date().getFullYear();
-        document.querySelector(".copyright").textContent = `© Your Company ${currentYear}`;
+    if (isPrime) {
+        document.getElementById("demo").innerHTML = num + " is a prime number.";
+    } else {
+        document.getElementById("demo").innerHTML = num + " is not a prime number.";
+    }
+}
+
+        // Ensure the DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            const dialog = document.getElementById('myFirstDialog');
+            dialog.show();
+            document.getElementById('hide').onclick = function () {
+                dialog.close();
+            };
+
+            // Update the copyright notice
+            const currentYear = new Date().getFullYear();
+            const copyrightElement = document.querySelector(".copyright");
+            if (copyrightElement) {
+                copyrightElement.textContent = `© Your Company ${currentYear}`;
+            }
+        });
     </script>
-
-    <!-- Copyright notice -->
-    <div class="copyright">
-        <!-- This will be dynamically updated -->
-    </div>
 </body>
 </html>
-
